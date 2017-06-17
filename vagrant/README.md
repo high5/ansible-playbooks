@@ -44,3 +44,5 @@ $ ansible-playbook ping.yml -i hosts/prd
 ```
 $ ansible-playbook -i hosts/prd ping.yml
 ```
+
+## group_vars について
