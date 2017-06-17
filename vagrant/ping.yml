@@ -1,5 +1,5 @@
 ---
-- hosts: all #対象を指定。allは全ホスト
+- hosts: vagrant #対象を指定。allは全ホスト
   remote_user: vagrant
   tasks: #実行するtaskを以下に指定
    - name: pingしてみる #taskの名前
