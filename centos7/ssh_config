@@ -5,7 +5,6 @@ Host default
   UserKnownHostsFile /dev/null
   StrictHostKeyChecking no
   PasswordAuthentication no
-  IdentityFile /Users/high5/.vagrant.d/insecure_private_key
+  IdentityFile /Users/high5/workspace/vagrant/sandbox/.vagrant/machines/default/virtualbox/private_key
   IdentitiesOnly yes
   LogLevel FATAL
-
