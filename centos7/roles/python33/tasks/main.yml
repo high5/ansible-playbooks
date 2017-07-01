@@ -1,0 +1,43 @@
+---
+- name: Pythonのtarballをダウンロードした状態にします
+  get_url: url={{ base.get_url }}/{{ versions.Python3 }}/Python-{{ versions.Python3 }}.tgz dest={{ directories.common.src }}
+  register: downloaded_tarball
+
+- name: Pythonのtarballを展開した状態にします
+  command: tar zxf Python-{{ versions.Python3 }}.tgz chdir={{ directories.common.src }}
+
+- name: Pythonをインストールした状態にします
+  shell: >
+    ./configure
+    --prefix={{ directories.Python3.prefix }}
+    --enable-shared &&
+    make &&
+    make install
+    chdir={{ directories.common.src }}Python-{{ versions.Python3 }}
+
+- name: Pythonのシンボリックリンクを作成した状態にします
+  file: src={{ directories.Python3.prefix }}bin/python3 dest={{ directories.Python3.prefix }}bin/python state=link
+
+- name: ld.so.confにPythonのlibraryパスを設定した状態にします
+  lineinfile: dest=/etc/ld.so.conf line={{ directories.Python3.prefix }}lib
+  notify: reload_ldconfig
+
+- name: ldconfigを再読込した状態にします
+  command: ldconfig
+
+- name: distribute（easy_install）のtarballをダウンロードした状態にします
+  get_url: url={{ base.get_url }}distribute-{{ versions.distribute }}.zip dest={{ directories.common.src }}
+
+- name: distribute（easy_install）のtarballを展開した状態にします
+  command: unzip -o distribute-{{ versions.distribute }}.zip chdir={{ directories.common.src }}
+
+- name: distribute（easy_install）をインストールした状態にします
+  shell: >
+    {{ directories.Python3.prefix }}bin/python3 setup.py install
+    chdir={{ directories.common.src }}distribute-{{ versions.distribute }}
+
+- name: pipをインストールした状態にします
+  easy_install: name=pip executable={{ directories.Python3.prefix }}bin/easy_install
+
+- name: /etc/bashrcにPythonのPATHを設定した状態にします
+  lineinfile: dest=/etc/bashrc line="PATH={{ directories.Python3.prefix }}bin:$PATH" insertbefore="^export PATH"

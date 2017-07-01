@@ -1,0 +1,10 @@
+- name: install packages from repo
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - python34
+    - python34-devel
+    - python34-setuptools
+    - python34-pip
+    - gcc

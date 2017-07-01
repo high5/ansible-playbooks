@@ -1,0 +1,12 @@
+- name: yum install httpd
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - httpd
+    - httpd-devel
+    - mod_ssl
+    - mod_wsgi
+  # tags:
+  #   - prod
+  become: yes

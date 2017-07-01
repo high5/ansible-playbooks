@@ -1,0 +1,9 @@
+---
+- name: Python 3 install
+  hosts: vagrant
+  remote_user: vagrant
+  gather_facts: no
+  become: yes
+  roles:
+   - { role: common2 }
+   - { role: python3 }

@@ -1,0 +1,6 @@
+---
+- hosts: vagrant #対象を指定。allは全ホスト
+  remote_user: vagrant
+  become: yes
+  roles:
+  - python33

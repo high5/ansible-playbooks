@@ -1,0 +1,10 @@
+- name: yum install mariadb
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - mariadb-server
+    - mariadb-devel
+  # tags:
+  #   - prod
+  become: yes

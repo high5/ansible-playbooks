@@ -1,0 +1,31 @@
+{
+    "base": {
+        "get_url": "https://www.python.org/ftp/python/"
+    },
+    "versions": {
+        "Python3": "3.6.1",
+        "Python2": "2.7.5",
+        "distribute": "0.7.3",
+        "Java7": "1.7.0_51",
+        "PostgreSQL": "9.3.2"
+    },
+    "directories": {
+        "common": {
+            "src": "/usr/local/src/",
+            "bin": "/usr/local/bin/"
+        },
+        "Python3": {
+            "prefix": "/usr/local/python3/"
+        },
+        "Python2": {
+            "prefix": "/usr/local/python2/"
+        },
+        "PostgreSQL": {
+            "prefix": "/usr/local/pgsql/",
+            "data": "/var/pgsql/data/"
+        },
+        "Java7": {
+            "prefix": "/usr/local/java7/"
+        }
+    }
+}

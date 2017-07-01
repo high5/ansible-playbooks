@@ -1,0 +1,7 @@
+---
+- hosts: vagrant #対象を指定。allは全ホスト
+  become: yes
+  gather_facts: yes #IMPORTANT
+  remote_user: vagrant
+  roles:
+    - epel-repository

@@ -1,0 +1,12 @@
+- name: install packages from pip3
+  easy_install:
+    name: "{{ item }}"
+    state: latest
+  executable: /usr/bin/pip3
+  with_items:
+    - django
+    - pymysql
+    - pip
+  # tags:
+  #   - prod
+  become: yes
